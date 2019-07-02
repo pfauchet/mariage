@@ -1,45 +1,49 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-  <nav class="teal lighten-1" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo white-text">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="/" class="white-text">Accueil</a></li>
-        <li><a href="/programme" class="white-text">Programme</a></li>
-        <li><a href="/lieu" class="white-text">Comment venir</a></li>
-	    	<li><a href="http://www.perdu.com" class="white-text">Liste de mariage</a></li>
-      </ul>
+<nav class="teal lighten-1" role="navigation">
+  <div class="nav-wrapper container">
+    <a id="logo-container" href="/" class="brand-logo white-text">Logo</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="/" class="white-text">Accueil</a></li>
+      <li><a href="/programme" class="white-text">Programme</a></li>
+      <li><a href="/lieux" class="white-text">Comment venir</a></li>
+      <li><a href="/confirmation" class="white-text">Confirmer votre venue</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="http://www.perdu.com" class="white-text">Liste de
+          mariage</a></li>
+    </ul>
 
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="/">Accueil</a></li>
-        <li><a href="/programme">Programme</a></li>
-        <li><a href="/lieux">Comment venir</a></li>
-	    	<li><a href="http://www.perdu.com">Liste de mariage</a></li>
-      </ul> 
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger white-text"><i class="material-icons">menu</i></a>
+    <ul id="nav-mobile" class="sidenav">
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/programme">Programme</a></li>
+      <li><a href="/lieux">Comment venir</a></li>
+      <li><a href="/confirmation">Confirmer votre venue</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="http://www.perdu.com">Liste de mariage</a></li>
+    </ul>
+    <a href="#" data-target="nav-mobile" class="sidenav-trigger white-text"><i class="material-icons">menu</i></a>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<footer class="page-footer teal">
+  <div class="container">
+    <div class="row">
+      <div class="col l3 s12">
+        <h5 class="white-text">Credits</h5>
+        <ul>
+          <li><a class="white-text" href="https://materializecss.com">Materialize</a></li>
+          <li><a class="white-text" href="https://flaticon.com">FlatIcon</a></li>
+          <li><a class="white-text" href="https://angular.io/">Angular</a></li>
+        </ul>
+      </div>
     </div>
-  </nav>
-
-  <router-outlet></router-outlet>
-
-  <footer class="page-footer teal">
+  </div>
+  <div class="footer-copyright">
     <div class="container">
-      <div class="row">
-        <div class="col l3 s12">
-          <h5 class="white-text">Credits</h5>
-          <ul>
-            <li><a class="white-text" href="https://materializecss.com">Materialize</a></li>
-            <li><a class="white-text" href="https://flaticon.com">FlatIcon</a></li>
-            <li><a class="white-text" href="https://angular.io/">Angular</a></li>            
-          </ul>
-        </div>
-      </div>
+      <a target="_blank" rel="noopener noreferrer" href="https://github.com/pfauchet/mariage" class="white-text">GitHub
+        Respository</a> -
+      <a target="_blank" rel="noopener noreferrer" href="https://github.com/pfauchet/mariage/blob/master/LICENSE"
+        class="white-text">MIT License</a>
     </div>
-    <div class="footer-copyright">
-      <div class="container">
-          © Paul FAUCHET 2019
-      </div>
-    </div>
-  </footer>
-
-
+  </div>
+</footer>

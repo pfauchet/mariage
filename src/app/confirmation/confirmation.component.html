@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12 center">
+                <div class="icon-block">
+                    <h2 class="center brown-text text-lighten-2"><i class="material-icons">event_note</i></h2>
+                </div>
+                <h5 class="center">Confirmez votre venue</h5>
+                <p class="center light">Complétez le forumlaire ci-dessous en utilisant le code inscrit sur votre carton
+                    d'invitation.</p>
+            </div>
+        </div>
+
+        <form class="col s12" *ngIf="displayFirstForm">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input required id="prenom" name="prenom" type="text" class="validate" [(ngModel)]="surname">
+                    <label for="prenom">Prénom</label>
+                </div>
+                <div class="input-field col s6">
+                    <input required id="nom" name="nom" type="text" class="validate" [(ngModel)]="name">
+                    <label for="nom">Nom de famille</label>
+                </div>
+                <div class="input-field col s6">
+                    <input required id="code" name="code" type="text" class="validate" [(ngModel)]="code">
+                    <label for="code">Code d'invitation</label>
+                </div>
+                <div class="input-field col s6">
+                    <select required name="decision" class="browser-default" [(ngModel)]="decision">
+                        <option value="0" disabled selected>Votre choix</option>
+                        <option value="1">Je participe</option>
+                        <option value="2">Je ne participe pas</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row center">
+                <button class="btn-large waves-effect waves-light teal lighten-1" (click)="onConfirm()">
+                    Valider
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+        
+        <form class="col s12" *ngIf="displaySecondForm">
+
+        </form>
+    </div>
+</div>
