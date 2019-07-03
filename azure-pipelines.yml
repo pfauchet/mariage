@@ -19,7 +19,9 @@ steps:
     npm install -g @angular/cli
     npm install
     ng build --prod --base-href="https://pfauchet.github.io/mariage/" --output-path="$(Build.ArtifactStagingDirectory)"
-    ls -ltra
+    echo $(Build.Repository.LocalPath)
+    ls -ltra $(Build.Repository.LocalPath)
+    echo $(Build.ArtifactStagingDirectory)
     ls -ltra $(Build.ArtifactStagingDirectory)
   displayName: 'npm install and build'
 
@@ -27,11 +29,19 @@ steps:
     cd $(Build.Repository.LocalPath)
     git checkout gh-pages
     git checkout -b azure-pipelines-build
+    echo $(Build.Repository.LocalPath)
+    ls -ltra $(Build.Repository.LocalPath)
+    echo $(Build.ArtifactStagingDirectory)
+    ls -ltra $(Build.ArtifactStagingDirectory)
   displayName: 'Create Build Branch based on gh-pages'
 
 - script: |
     cd $(Build.Repository.LocalPath);
     git rm -rf .; git clean -fxd;
+    echo $(Build.Repository.LocalPath)
+    ls -ltra $(Build.Repository.LocalPath)
+    echo $(Build.ArtifactStagingDirectory)
+    ls -ltra $(Build.ArtifactStagingDirectory)
   displayName: 'Clean Build Branch'
 
 - script: |
@@ -39,15 +49,13 @@ steps:
     git config --global user.name "pfauchet";
   displayName: 'Configure Git User'
 
-- script: 'cp -r $(Build.ArtifactStagingDirectory) $(Build.Repository.LocalPath)'
-  displayName: 'Copy Artifact Files to Cleaned Build Branch'
-
 - script: |
-    cd $(Build.Repository.LocalPath);
-    ls -ltra
-    cd $(Build.ArtifactStagingDirectory);
-    ls -ltra
-  displayName: 'Listing directories'
+    cp -r $(Build.ArtifactStagingDirectory) $(Build.Repository.LocalPath)
+    echo $(Build.Repository.LocalPath)
+    ls -ltra $(Build.Repository.LocalPath)
+    echo $(Build.ArtifactStagingDirectory)
+    ls -ltra $(Build.ArtifactStagingDirectory)
+  displayName: 'Copy Artifact Files to Cleaned Build Branch'
 
 - script: >
     cd $(Build.Repository.LocalPath);
