@@ -19,5 +19,12 @@ steps:
     npm install -g @angular/cli
     npm install
     ng build --prod
-    tree
+    ls -ltra
+    ls -ltra dist
   displayName: 'npm install and build'
+
+- script: |
+    cd $(Build.Repository.LocalPath)
+    git checkout gh-pages
+    git checkout -b azure-pipelines-build
+  displayName: 'Create Build Branch based on gh-pages'
