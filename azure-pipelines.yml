@@ -18,7 +18,7 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-    ng build --prod
+    ng build --prod -op ./dist
     ls -ltra
     ls -ltra dist
   displayName: 'npm install and build'
@@ -28,3 +28,16 @@ steps:
     git checkout gh-pages
     git checkout -b azure-pipelines-build
   displayName: 'Create Build Branch based on gh-pages'
+
+- script: |
+    cd $(Build.Repository.LocalPath);
+    git rm -rf .; git clean -fxd;
+  displayName: 'Clean Build Branch'
+
+  - script: |
+    git config --global user.email "fauchet.paul@gmail.com";
+    git config --global user.name "Paul Fauchet";
+  displayName: 'Configure Git User'
+
+- script: 'cp -a $(Build.ArtifactStagingDirectory)/dist/. $(Build.Repository.LocalPath)'
+  displayName: 'Copy Artifact Files to Cleaned Build Branch'
