@@ -10,6 +10,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- checkout: self
+  persistCredentials: true # set to 'true' to leave the OAuth token in the Git config after the initial fetch
+
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
