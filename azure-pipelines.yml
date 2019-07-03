@@ -40,7 +40,7 @@ steps:
     git config --global user.name "pfauchet";
   displayName: 'Configure Git User'
 
-- script: 'cp -a $(Build.ArtifactStagingDirectory)/. $(Build.Repository.LocalPath)'
+- script: 'cp -r $(Build.ArtifactStagingDirectory) $(Build.Repository.LocalPath)'
   displayName: 'Copy Artifact Files to Cleaned Build Branch'
 
 - script: |
@@ -49,3 +49,9 @@ steps:
     cd $(Build.ArtifactStagingDirectory);
     ls -ltra
   displayName: 'Listing directories'
+
+- script: >
+    cd $(Build.Repository.LocalPath);
+    git add --all;
+    git commit -m"Pipelines-Bot: Updated site via $(Build.SourceVersion)";
+  displayName: 'Create our Commit'
