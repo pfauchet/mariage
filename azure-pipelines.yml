@@ -18,10 +18,9 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-    ng build --prod --base-href="https://pfauchet.github.io/mariage/" --output-path="./dist"
+    ng build --prod --base-href="https://pfauchet.github.io/mariage/" --output-path="$(Build.ArtifactStagingDirectory)"
     ls -ltra
-    ls -ltra dist
-    pwd
+    ls -ltra $(Build.ArtifactStagingDirectory)
   displayName: 'npm install and build'
 
 - script: |
@@ -54,4 +53,5 @@ steps:
     cd $(Build.Repository.LocalPath);
     git add --all;
     git commit -m"Pipelines-Bot: Updated site via $(Build.SourceVersion)";
+    git push origin azure-pipelines-build
   displayName: 'Create our Commit'
