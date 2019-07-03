@@ -50,7 +50,7 @@ steps:
   displayName: 'Configure Git User'
 
 - script: |
-    cp -r $(Build.ArtifactStagingDirectory) $(Build.Repository.LocalPath)
+    cp -r $(Build.ArtifactStagingDirectory)/ $(Build.Repository.LocalPath)
     echo $(Build.Repository.LocalPath)
     ls -ltra $(Build.Repository.LocalPath)
     echo $(Build.ArtifactStagingDirectory)
