@@ -28,12 +28,11 @@ steps:
 - script: |
     cd $(Build.Repository.LocalPath)
     git checkout gh-pages
-    git checkout -b azure-pipelines-build
     echo $(Build.Repository.LocalPath)
     ls -ltra $(Build.Repository.LocalPath)
     echo $(Build.ArtifactStagingDirectory)
     ls -ltra $(Build.ArtifactStagingDirectory)
-  displayName: 'Create Build Branch based on gh-pages'
+  displayName: 'Switching to gh-pages Branch'
 
 - script: |
     cd $(Build.Repository.LocalPath);
@@ -42,7 +41,7 @@ steps:
     ls -ltra $(Build.Repository.LocalPath)
     echo $(Build.ArtifactStagingDirectory)
     ls -ltra $(Build.ArtifactStagingDirectory)
-  displayName: 'Clean Build Branch'
+  displayName: 'Clean gh-pages Branch'
 
 - script: |
     git config --global user.email "42136778+pfauchet@users.noreply.github.com";
@@ -50,16 +49,16 @@ steps:
   displayName: 'Configure Git User'
 
 - script: |
-    cp -r $(Build.ArtifactStagingDirectory)/ $(Build.Repository.LocalPath)
+    cp -r $(Build.ArtifactStagingDirectory)/* $(Build.Repository.LocalPath)
     echo $(Build.Repository.LocalPath)
     ls -ltra $(Build.Repository.LocalPath)
     echo $(Build.ArtifactStagingDirectory)
     ls -ltra $(Build.ArtifactStagingDirectory)
-  displayName: 'Copy Artifact Files to Cleaned Build Branch'
+  displayName: 'Copy Artifact Files to gh-pages Branch'
 
 - script: >
     cd $(Build.Repository.LocalPath);
     git add --all;
     git commit -m"Pipelines-Bot: Updated site via $(Build.SourceVersion)";
-    git push origin azure-pipelines-build
+    git push origin gh-pages
   displayName: 'Create our Commit'
