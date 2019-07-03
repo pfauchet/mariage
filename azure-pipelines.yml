@@ -21,6 +21,7 @@ steps:
     ng build --prod --base-href="https://pfauchet.github.io/mariage/" --output-path="./dist"
     ls -ltra
     ls -ltra dist
+    pwd
   displayName: 'npm install and build'
 
 - script: |
@@ -35,11 +36,11 @@ steps:
   displayName: 'Clean Build Branch'
 
 - script: |
-    git config --global user.email "fauchet.paul@gmail.com";
-    git config --global user.name "Paul Fauchet";
+    git config --global user.email "42136778+pfauchet@users.noreply.github.com";
+    git config --global user.name "pfauchet";
   displayName: 'Configure Git User'
 
-- script: 'cp -a $(Build.ArtifactStagingDirectory)/dist/. $(Build.Repository.LocalPath)'
+- script: 'cp -a $(Build.ArtifactStagingDirectory)/. $(Build.Repository.LocalPath)'
   displayName: 'Copy Artifact Files to Cleaned Build Branch'
 
 - script: |
