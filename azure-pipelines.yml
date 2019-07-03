@@ -43,7 +43,8 @@ steps:
   displayName: 'Copy Artifact Files to Cleaned Build Branch'
 
 - script: |
-  cd $(Build.Repository.LocalPath);
-  ls -ltra
-  cd $(Build.ArtifactStagingDirectory);
-  ls -ltra
+    cd $(Build.Repository.LocalPath);
+    ls -ltra
+    cd $(Build.ArtifactStagingDirectory);
+    ls -ltra
+  displayName: 'Listing directories'
