@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import * as $ from 'jquery';
+import M from "materialize-css";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mariage';
+
+  public ngOnInit()
+  {
+    console.log("Global initialization")
+    M.AutoInit();
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import M from "materialize-css";
 
 @Component({
   selector: 'app-programme',
@@ -9,7 +10,11 @@ export class ProgrammeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit()
+  {
+    console.log("Parallax initialization")
+    var elems = document.querySelectorAll('.parallax');
+    M.Parallax.init(elems);
   }
   
   lat_mairie: number = 49.301074;
