@@ -18,7 +18,7 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-    ng build --prod -op ./dist
+    ng build --prod --base-href="https://pfauchet.github.io/mariage/" --output-path="./dist"
     ls -ltra
     ls -ltra dist
   displayName: 'npm install and build'
