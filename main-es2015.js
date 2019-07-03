@@ -101,11 +101,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AccueilComponent", function() { return AccueilComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var materialize_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! materialize-css */ "./node_modules/materialize-css/dist/js/materialize.js");
+/* harmony import */ var materialize_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(materialize_css__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 let AccueilComponent = class AccueilComponent {
     constructor() { }
     ngOnInit() {
+        console.log("Parallax initialization");
+        var elems = document.querySelectorAll('.parallax');
+        materialize_css__WEBPACK_IMPORTED_MODULE_2___default.a.Parallax.init(elems);
     }
 };
 AccueilComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -187,11 +193,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var materialize_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! materialize-css */ "./node_modules/materialize-css/dist/js/materialize.js");
+/* harmony import */ var materialize_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(materialize_css__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 let AppComponent = class AppComponent {
     constructor() {
         this.title = 'mariage';
+    }
+    ngOnInit() {
+        console.log("Global initialization");
+        materialize_css__WEBPACK_IMPORTED_MODULE_2___default.a.AutoInit();
     }
 };
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -381,6 +394,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProgrammeComponent", function() { return ProgrammeComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var materialize_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! materialize-css */ "./node_modules/materialize-css/dist/js/materialize.js");
+/* harmony import */ var materialize_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(materialize_css__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 let ProgrammeComponent = class ProgrammeComponent {
@@ -391,6 +407,9 @@ let ProgrammeComponent = class ProgrammeComponent {
         this.lng_reception = 0.0784343;
     }
     ngOnInit() {
+        console.log("Parallax initialization");
+        var elems = document.querySelectorAll('.parallax');
+        materialize_css__WEBPACK_IMPORTED_MODULE_2___default.a.Parallax.init(elems);
     }
 };
 ProgrammeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
