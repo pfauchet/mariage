@@ -34,7 +34,7 @@ steps:
     git rm -rf .; git clean -fxd;
   displayName: 'Clean Build Branch'
 
-  - script: |
+- script: |
     git config --global user.email "fauchet.paul@gmail.com";
     git config --global user.name "Paul Fauchet";
   displayName: 'Configure Git User'
