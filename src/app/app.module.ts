@@ -10,6 +10,8 @@ import { ProgrammeComponent } from './programme/programme.component';
 import { LieuxComponent } from './lieux/lieux.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 
+import { ConfirmationService } from './service/confirmation.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,9 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
       apiKey: 'AIzaSyDcJ5ioyLPMbyNXVTd1S3RmyQDpPJyNee4'
     })
   ],
-  providers: [],
+  providers: [
+    ConfirmationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
