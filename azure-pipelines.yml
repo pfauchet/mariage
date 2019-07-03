@@ -22,28 +22,18 @@ steps:
     npm install -g @angular/cli
     npm install
     ng build --prod --base-href="https://pfauchet.github.io/mariage/" --output-path="$(Build.ArtifactStagingDirectory)"
-    echo $(Build.Repository.LocalPath)
-    ls -ltra $(Build.Repository.LocalPath)
-    echo $(Build.ArtifactStagingDirectory)
-    ls -ltra $(Build.ArtifactStagingDirectory)
   displayName: 'npm install and build'
 
 - script: |
     cd $(Build.Repository.LocalPath)
     git checkout gh-pages
-    echo $(Build.Repository.LocalPath)
-    ls -ltra $(Build.Repository.LocalPath)
-    echo $(Build.ArtifactStagingDirectory)
-    ls -ltra $(Build.ArtifactStagingDirectory)
   displayName: 'Switching to gh-pages Branch'
 
 - script: |
     cd $(Build.Repository.LocalPath);
     git rm -rf .; git clean -fxd;
-    echo $(Build.Repository.LocalPath)
-    ls -ltra $(Build.Repository.LocalPath)
-    echo $(Build.ArtifactStagingDirectory)
-    ls -ltra $(Build.ArtifactStagingDirectory)
+    touch README.md;
+    echo "# Site de mariage" >> README.md;
   displayName: 'Clean gh-pages Branch'
 
 - script: |
@@ -53,11 +43,12 @@ steps:
 
 - script: |
     cp -r $(Build.ArtifactStagingDirectory)/* $(Build.Repository.LocalPath)
-    echo $(Build.Repository.LocalPath)
-    ls -ltra $(Build.Repository.LocalPath)
-    echo $(Build.ArtifactStagingDirectory)
-    ls -ltra $(Build.ArtifactStagingDirectory)
   displayName: 'Copy Artifact Files to gh-pages Branch'
+
+- script: |
+    cd $(Build.Repository.LocalPath)
+    cp index.html 404.html
+  displayName: 'Create 404.html file'
 
 - script: >
     cd $(Build.Repository.LocalPath);
