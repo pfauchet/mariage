@@ -41,3 +41,9 @@ steps:
 
 - script: 'cp -a $(Build.ArtifactStagingDirectory)/dist/. $(Build.Repository.LocalPath)'
   displayName: 'Copy Artifact Files to Cleaned Build Branch'
+
+- script: |
+  cd $(Build.Repository.LocalPath);
+  ls -ltra
+  cd $(Build.ArtifactStagingDirectory);
+  ls -ltra
