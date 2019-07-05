@@ -7,18 +7,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ProgrammeComponent } from './programme/programme.component';
-import { LieuxComponent } from './lieux/lieux.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 
-import { ConfirmationService } from './service/confirmation.service'
+import { ConfirmationService } from './service/confirmation.service';
+import { LivreDorComponent } from './livre-dor/livre-dor.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     AccueilComponent,
     ProgrammeComponent,
-    LieuxComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    LivreDorComponent
   ],
   imports: [
     BrowserModule,
