@@ -17,9 +17,7 @@ export class CommentaireService {
       comment: comment
     }
     this.http.post(this.apiEndpoint, body).subscribe(data => {
-      console.log(data)
       if (apiCallback != null) {
-        console.log(data)
         apiCallback(data);
       }
       else {
