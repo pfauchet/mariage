@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommentaireService } from '../service/commentaire.service'
 
 @Component({
   selector: 'app-livre-dor',
@@ -10,12 +11,15 @@ export class LivreDorComponent implements OnInit {
   surname: string;
   comment: string;
 
-  constructor() { }
+  constructor(private commentaireService: CommentaireService) { }
 
   ngOnInit() {
   }
 
   onSendComment(){
     console.log("Sending comment")
+    this.commentaireService.createComment(this.name, this.surname, this.comment, (data: any) => {
+      console.log(data);
+    });
   }
 }
