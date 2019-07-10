@@ -13,6 +13,7 @@ import { LivreDorComponent } from './livre-dor/livre-dor.component'
 
 import { ConfirmationService } from './service/confirmation.service';
 import { CommentaireService } from './service/commentaire.service';
+import { PhotosComponent } from './photos/photos.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CommentaireService } from './service/commentaire.service';
     AccueilComponent,
     ProgrammeComponent,
     ConfirmationComponent,
-    LivreDorComponent
+    LivreDorComponent,
+    PhotosComponent
   ],
   imports: [
     BrowserModule,
