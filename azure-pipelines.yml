@@ -21,20 +21,20 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-    ng build --prod --base-href="https://pfauchet.github.io/mariage/" --output-path="$(Build.ArtifactStagingDirectory)"
+    ng build --prod --output-path="$(Build.ArtifactStagingDirectory)"
   displayName: 'npm install and build'
 
 - script: |
     cd $(Build.Repository.LocalPath)
-    git checkout gh-pages
-  displayName: 'Switching to gh-pages Branch'
+    git clone https://github.com/pfauchet/pfauchet.github.io.git
+  displayName: 'Cloning gh-pages repository'
 
 - script: |
     cd $(Build.Repository.LocalPath);
     git rm -rf .; git clean -fxd;
     touch README.md;
     echo "# Site de mariage" >> README.md;
-  displayName: 'Clean gh-pages Branch'
+  displayName: 'Clean gh-pages repository'
 
 - script: |
     git config --global user.email "42136778+pfauchet@users.noreply.github.com";
@@ -43,7 +43,7 @@ steps:
 
 - script: |
     cp -r $(Build.ArtifactStagingDirectory)/* $(Build.Repository.LocalPath)
-  displayName: 'Copy Artifact Files to gh-pages Branch'
+  displayName: 'Copy Artifact Files to gh-pages repository'
 
 - script: |
     cd $(Build.Repository.LocalPath)
@@ -54,7 +54,7 @@ steps:
     cd $(Build.Repository.LocalPath);
     git add --all;
     git commit -m"Pipelines-Bot: Updated site via $(Build.SourceVersion)";
-    git push origin gh-pages
+    git push origin master
   displayName: 'Create our Commit'
 
 # Note: github_pat should be configured as an environment variable in devops
@@ -63,7 +63,7 @@ steps:
 - script: |
     gh_user="pfauchet";
     gh_pass=$(github_pat);
-    gh_repo="mariage";
+    gh_repo="pfauchet.github.io";
     auth_pass=$(echo -n "${gh_user}:$(github_pat)" | base64);
 
     curl https://api.github.com/repos/${gh_user}/${gh_repo}/pages/builds -I \
@@ -71,15 +71,3 @@ steps:
     -H "Accept: application/vnd.github.mister-fantastic-preview+json" \
     -H "Authorization: Basic ${auth_pass}"
   displayName: '[GitHub] Trigger Page Build'
-
-- script: |
-    gh_user="thebillkidy";
-    gh_pass=$(github_pat);
-    gh_repo="thebillkidy.github.io";
-    auth_pass=$(echo -n "${gh_user}:$(github_pat)" | base64);
-
-    curl https://api.github.com/repos/${gh_user}/${gh_repo}/pages/builds/latest -I \
-    -X GET \
-    -H "Accept: application/vnd.github.mister-fantastic-preview+json" \
-    -H "Authorization: Basic $auth_pass"
-  displayName: '[GitHub] Get Page Build Status'
