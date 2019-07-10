@@ -10,10 +10,11 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { ProgrammeComponent } from './programme/programme.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { LivreDorComponent } from './livre-dor/livre-dor.component'
+import { PhotosComponent } from './photos/photos.component';
 
 import { ConfirmationService } from './service/confirmation.service';
 import { CommentaireService } from './service/commentaire.service';
-import { PhotosComponent } from './photos/photos.component';
+import { InstagramService } from './service/instagram.service'
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PhotosComponent } from './photos/photos.component';
   ],
   providers: [
     ConfirmationService,
-    CommentaireService
+    CommentaireService,
+    InstagramService
   ],
   bootstrap: [AppComponent]
 })

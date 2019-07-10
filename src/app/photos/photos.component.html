@@ -1,1 +1,22 @@
-<div id="instafeed"></div>
+<div class="row center">
+  <div *ngFor="let instagramPost of instagramPosts">
+    <div class="col s12 m4" *ngIf="instagramPost.displayPost">
+      <div class="card large">
+        <div class="card-image">
+          <a href="{{ instagramPost.permalink}}" target="_blank" rel="noopener noreferrer">
+            <img src="{{ instagramPost.media_url }}">
+          </a>
+        </div>
+        <div class="card-content">
+          <p>{{ instagramPost.caption }}</p>
+        </div>
+        <div class="card-action">
+          <i>
+            {{ instagramPost.like_count}} Likes
+            {{ instagramPost.comments_count}} Commentaires
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
