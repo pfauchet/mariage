@@ -11,7 +11,6 @@ export class AppComponent {
 
   public ngOnInit()
   {
-    console.log("Global initialization")
     M.AutoInit();
   }
 }

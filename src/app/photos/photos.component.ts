@@ -15,10 +15,12 @@ export class PhotosComponent implements OnInit {
     this.instagramService.getLatestInstagramPosts((data) => {
       this.instagramPosts = data.data;
       this.instagramPosts.forEach(element => {
-        if (element.media_type != "IMAGE")
-          element.displayPost = false;
-        else
-          element.displayPost = true;
+        if (element.media_type != "IMAGE") {
+          const url = new URL(element.permalink);
+          //const shortCode = url.pathname.replace(/\/p\/(\w+)\//g, "$1");
+          const shortCode = url.pathname.replace(/\/p\/([A-Za-z0-9-]+)\//g, "$1");
+          element.media_url = "https://instagram.com/p/" + shortCode + "/media/?size=l";
+        }
       });
     })
   }

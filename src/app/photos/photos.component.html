@@ -1,21 +1,30 @@
+<div class="row">
+  <div class="col s12 center">
+    <div class="icon-block">
+      <h2 class="center brown-text text-lighten-2"><i class="material-icons">photo_library</i></h2>
+    </div>
+    <h5 class="center">Photos du mariage</h5>
+    <p class="center light">Postez vos photos sur Instagram sous le hashtag <a
+        href="https://www.instagram.com/explore/tags/lydiaetpaul2020" target="_blank"
+        rel="noopener noreferrer">#lydiaetpaul2020</a>, pour les voir apparaître ici !</p>
+  </div>
+</div>
 <div class="row center">
-  <div *ngFor="let instagramPost of instagramPosts">
-    <div class="col s12 m4" *ngIf="instagramPost.displayPost">
-      <div class="card large">
-        <div class="card-image">
-          <a href="{{ instagramPost.permalink}}" target="_blank" rel="noopener noreferrer">
-            <img src="{{ instagramPost.media_url }}">
-          </a>
-        </div>
-        <div class="card-content">
-          <p class="instagram-caption">{{ instagramPost.caption }}</p>
-        </div>
-        <div class="card-action">
-          <i>
-            {{ instagramPost.like_count}} Likes
-            {{ instagramPost.comments_count}} Commentaires
-          </i>
-        </div>
+  <div class="col s12 m4" *ngFor="let instagramPost of instagramPosts">
+    <div class="card large">
+      <div class="card-image">
+        <a href="{{ instagramPost.permalink}}" target="_blank" rel="noopener noreferrer">
+          <img src="{{ instagramPost.media_url }}">
+        </a>
+      </div>
+      <div class="card-content">
+        <p class="instagram-caption">{{ instagramPost.caption }}</p>
+      </div>
+      <div class="card-action">
+        <i>
+          {{ instagramPost.like_count}} Likes
+          {{ instagramPost.comments_count}} Commentaires
+        </i>
       </div>
     </div>
   </div>
