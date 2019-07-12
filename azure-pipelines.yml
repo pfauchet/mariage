@@ -21,8 +21,8 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-    #ng build --prod --base-href="https://pfauchet.github.io/mariage/" --output-path="$(Build.ArtifactStagingDirectory)"
-    ng build --prod --output-path="$(Build.ArtifactStagingDirectory)"
+    ng build --prod --base-href="https://preprod.lydiaetpaul2020.fr/" --output-path="$(Build.ArtifactStagingDirectory)"
+    #ng build --prod --output-path="$(Build.ArtifactStagingDirectory)"
   displayName: 'npm install and build'
 
 - script: |
