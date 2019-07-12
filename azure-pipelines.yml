@@ -34,7 +34,9 @@ steps:
     cd $(Build.Repository.LocalPath);
     git rm -rf .; git clean -fxd;
     touch README.md;
-    echo "# Site de mariage" >> README.md;
+    echo "# Préproduction site de mariage" >> README.md;
+    touch CNAME;
+    echo "preprod.lydiaetpaul2020.fr" >> CNAME 
   displayName: 'Clean gh-pages Branch'
 
 - script: |
