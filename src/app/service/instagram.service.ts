@@ -11,36 +11,33 @@ export class InstagramService {
   constructor(private http: HttpClient) { }
 
   getMyInstagramPosts(apiCallback) {
-    this.http.get(this.apiEndpoint + "/instagram/me").subscribe(data => {
-      if (apiCallback != null) {
-        apiCallback(data);
-      }
-      else {
-        console.log(data);
-      }
-    });
+    this.http.get(this.apiEndpoint + "/instagram/me").subscribe(
+      data => {
+        apiCallback(null, data);
+      },
+      error => {
+        apiCallback(error, null);
+      });
   }
 
   getLatestInstagramPosts(apiCallback) {
-    this.http.get(this.apiEndpoint + "/instagram/recent_media").subscribe(data => {
-      if (apiCallback != null) {
-        apiCallback(data);
-      }
-      else {
-        console.log(data);
-      }
-    });
+    this.http.get(this.apiEndpoint + "/instagram/recent_media").subscribe(
+      data => {
+        apiCallback(null, data);
+      },
+      error => {
+        apiCallback(error, null);
+      });
   }
 
   getTrendingInstagramPosts(apiCallback) {
-    this.http.get(this.apiEndpoint + "/instagram/top_media").subscribe(data => {
-      if (apiCallback != null) {
-        apiCallback(data);
-      }
-      else {
-        console.log(data);
-      }
-    });
+    this.http.get(this.apiEndpoint + "/instagram/top_media").subscribe(
+      data => {
+        apiCallback(null, data);
+      },
+      error => {
+        apiCallback(error, null);
+      });
   }
 
 }

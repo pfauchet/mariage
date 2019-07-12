@@ -13,27 +13,37 @@ export class LivreDorComponent implements OnInit {
 
   displaySuccessMessage: boolean = false;
   displayErrorMessage: boolean = false;
+  errorMessage: string;
 
   constructor(private commentaireService: CommentaireService) { }
 
   ngOnInit() {
   }
 
-  onSendComment(){
+  onSendComment() {
     console.log("Sending comment");
     this.displayErrorMessage = false;
     this.displaySuccessMessage = false;
 
-    this.commentaireService.createComment(this.name, this.surname, this.comment, (data: any) => {
-      console.log(data);
-      if (data.errorMessage){
-        this.displayErrorMessage = true;
-      } else {
-        this.displaySuccessMessage = true;
-        this.comment="";
-        this.surname="";
-        this.name="";
-      }
-    });
+    if (!this.name || !this.surname || !this.comment) {
+      this.errorMessage = "Merci de compléter tous les champs";
+      this.displayErrorMessage = true;
+    }
+    else {
+      this.commentaireService.createComment(this.name, this.surname, this.comment, (err, data) => {
+        if (err || data.errorMessage) {
+          this.displayErrorMessage = true;
+          this.errorMessage = "Oops, une erreur est survenue lors de l'envoi de ton commentaire ...";
+        }
+        else {
+          console.log(data);
+          this.displaySuccessMessage = true;
+          this.comment = "";
+          this.surname = "";
+          this.name = "";
+        }
+      });
+    }
+
   }
 }

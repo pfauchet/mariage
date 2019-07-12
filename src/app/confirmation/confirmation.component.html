@@ -8,10 +8,13 @@
                 <h5 class="center">Confirmez votre venue</h5>
                 <p class="center light">Complétez le forumlaire ci-dessous en utilisant le code inscrit sur votre carton
                     d'invitation.</p>
+                <p class="center light" *ngIf="displaySuccessMessage">Ta confirmation a bien été prise en compte, merci !</p>
+                <p class="center light red-text" *ngIf="displayErrorMessage">{{ errorMessage }}</p>
+
             </div>
         </div>
 
-        <form class="col s12" *ngIf="displayFirstForm">
+        <form class="col s12">
             <div class="row">
                 <div class="input-field col s6">
                     <input required id="prenom" name="prenom" type="text" class="validate" [(ngModel)]="surname">
@@ -39,10 +42,6 @@
                     <i class="material-icons right">send</i>
                 </button>
             </div>
-        </form>
-        
-        <form class="col s12" *ngIf="displaySecondForm">
-
         </form>
     </div>
 </div>

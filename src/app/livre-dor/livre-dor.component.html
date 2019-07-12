@@ -8,7 +8,7 @@
                 <h5 class="center">Publier un commentaire !</h5>
                 <p class="center light">Vous pouvez nous laisser ici un petit mot gentil !</p>
                 <p class="center light" *ngIf="displaySuccessMessage">Ton message a bien été pris en compte, merci !</p>
-                <p class="center light red-text" *ngIf="displayErrorMessage">Oops, une erreur est survenue lors de l'envoi de ton commentaire ...</p>
+                <p class="center light red-text" *ngIf="displayErrorMessage">{{ errorMessage }}</p>
             </div>
         </div>
         

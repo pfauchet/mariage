@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CommentaireService {
-  apiEndpoint = "https://qxvsirnj00.execute-api.eu-west-3.amazonaws.com/production/commentaire"
+  apiEndpoint = "https://qxvsirnj00.execute-api.eu-west-3.amazonaws.com/production";
 
   constructor(private http: HttpClient) { }
   
@@ -16,13 +16,12 @@ export class CommentaireService {
       surname: surname,
       comment: comment
     }
-    this.http.post(this.apiEndpoint, body).subscribe(data => {
-      if (apiCallback != null) {
-        apiCallback(data);
-      }
-      else {
-        console.log(data);
-      }
-    });
+    this.http.post(this.apiEndpoint + "/commentaire", body).subscribe(
+      data => {
+        apiCallback(null, data);
+      },
+      error => {
+        apiCallback(error, null);
+      });
   }
 }
