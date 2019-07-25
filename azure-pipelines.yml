@@ -65,9 +65,9 @@ steps:
 #   -> Create environment variable in dev.azure.com under pipelines -> edit (right top) -> variables (right top triple dots) -> called github_pat -> click the lock
 - script: |
     gh_user="pfauchet";
-    gh_pass=$(github_pat);
+    gh_pass=$(github_patv2);
     gh_repo="mariage";
-    auth_pass=$(echo -n "${gh_user}:$(github_pat)" | base64);
+    auth_pass=$(echo -n "${gh_user}:$(github_patv2)" | base64);
     curl https://api.github.com/repos/${gh_user}/${gh_repo}/pages/builds -I \
     -X POST \
     -H "Accept: application/vnd.github.mister-fantastic-preview+json" \
@@ -76,7 +76,7 @@ steps:
 
 - script: |
     gh_user="thebillkidy";
-    gh_pass=$(github_pat);
+    gh_pass=$(github_patv2);
     gh_repo="thebillkidy.github.io";
     auth_pass=$(echo -n "${gh_user}:$(github_pat)" | base64);
 
