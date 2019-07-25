@@ -1,3 +1,10 @@
-.title-text {
-    text-shadow: 2px 2px 4px black;
+.save-the-date {
+    max-width: 100%; 
+    margin-bottom: 20px;
+}
+
+.image-container {
+    padding-top: 15px; 
+    padding-bottom: 50px; 
+    background-color: #fffde7
 }
