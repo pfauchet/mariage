@@ -11,22 +11,24 @@ export class ConfirmationComponent implements OnInit {
   constructor(private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
-    this.decision = "0";
     this.displayErrorMessage = false;
     this.displaySecondForm = false;
   }
 
-  displayErrorMessage: boolean = false;
   displaySecondForm: boolean = false;
+  displayErrorMessage: boolean = false;
   errorMessage: string;
+  successMessage: string = null;
 
   surname: string;
   name: string;
-  decision: string;
-
   attendantData;
 
-  onSearchAttendant(){
+  isAttending: boolean = true;
+  isWithPlusOne: boolean = false;
+  isWithChildren: boolean = false;
+
+  onSearchAttendant() {
     console.log("Searching attendant");
     this.displayErrorMessage = false;
     this.displaySecondForm = false;
@@ -35,24 +37,19 @@ export class ConfirmationComponent implements OnInit {
       this.errorMessage = "Merci de compléter tous les champs";
       this.displayErrorMessage = true;
     }
-    else{
-      this.confirmationService.searchAttendant(this.name, this.surname, (err, data) =>{
-        if(err) {
+    else {
+      this.confirmationService.searchAttendant(this.name, this.surname, (err, data) => {
+        if (err) {
           console.log(err);
         } else {
           if (data.errorMessage == "NOT_FOUND") {
             this.errorMessage = "Invité non trouvable";
             this.displayErrorMessage = true;
-          } else if (data.errorMessage){
+          } else if (data.errorMessage) {
             this.errorMessage = "Une erreur est survenue, veuillez réessayer.";
             this.displayErrorMessage = true;
           } else {
             this.attendantData = data;
-            this.attendantData.childList = [];
-            for(var i = 0; i < data.children; i++){
-              this.attendantData.childList[i]=i+1
-            }
-            console.log(this.attendantData)
             this.displaySecondForm = true;
           }
         }
@@ -64,28 +61,20 @@ export class ConfirmationComponent implements OnInit {
     console.log("Confirmation en cours");
     this.displayErrorMessage = false;
 
-    if (!this.surname || !this.name || this.decision == "0") {
-      this.errorMessage = "Merci de compléter tous les champs";
-      this.displayErrorMessage = true;
-    }
-    else {
-      let attends = (this.decision == "1");
+    this.confirmationService.confirmReservation(this.attendantData.code, this.attendantData.token, this.isAttending, this.isWithPlusOne, this.isWithChildren, (err, data) => {
+      if (err) {
+        console.log("Erreur lors de la confirmation", err);
+        this.displayErrorMessage = true;
+        this.errorMessage = "Oops, une erreur est survenue lors de la confirmation de ta venue ...";
+      }
+      else {
+        console.log("Confirmation réussie", data);
+        this.name = null;
+        this.surname = null;
+        this.successMessage = "Confirmation réussie, merci pour votre réponse."
+      }
+    })
 
-      this.confirmationService.confirmReservation(this.name, this.surname, attends, 1, (err, data) => {
-        if (err) {
-          console.log("Erreur lors de la confirmation", err);
-          this.displayErrorMessage = true;
-          this.errorMessage = "Oops, une erreur est survenue lors de la confirmation de ta venue ...";
-        }
-        else {
-          console.log("Confirmation réussie", data);
-          this.name = null;
-          this.surname = null;
-          this.decision = "0";
-        }
-
-      })
-    }
   }
 
 }

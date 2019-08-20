@@ -9,16 +9,17 @@
                 <p class="center light">Complétez le forumlaire ci-dessous avant le <span class="teal-text"
                         style="font-weight: bold">15 février 2020.</span></p>
                 <p class="center light red-text" *ngIf="displayErrorMessage">{{ errorMessage }}</p>
+                <p class="center light teal-text" *ngIf="successMessage">{{ successMessage }}</p>
             </div>
         </div>
 
         <form class="col s12" *ngIf="!displaySecondForm">
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col m6 s12">
                     <input required id="prenom" name="prenom" type="text" class="validate" [(ngModel)]="surname">
                     <label for="prenom">Prénom</label>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col m6 s12">
                     <input required id="nom" name="nom" type="text" class="validate" [(ngModel)]="name">
                     <label for="nom">Nom de famille</label>
                 </div>
@@ -36,30 +37,23 @@
                 <b>Bonjour {{ attendantData.surname}} {{ attendantData.name }}</b>
             </p>
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     <label>
-                        <input type="checkbox" checked="checked" />
+                        <input type="checkbox" name="isAttending" checked="checked" [(ngModel)]="isAttending"/>
                         <span>Je serai présent(e)</span>
                     </label>
                 </div>
-                <div class="input-field col s6" *ngIf="attendantData.plusOne">
+                <div class="input-field col s12" *ngIf="attendantData.plusOne">
                     <label>
-                        <input type="checkbox" />
+                        <input type="checkbox" name="isWithPlusOne" [(ngModel)]="isWithPlusOne" />
                         <span>Je viendrai accompagné(e) de {{ attendantData.plusOne }}</span>
                     </label>
                 </div>
-                <div class="input-field col s6" *ngIf="attendantData.children != 0">
+                <div class="input-field col s12" *ngIf="attendantData.children != 0">
                     <label>
-                        <span>Je viendrai avec des enfants : </span>
-                        <input type="range" min="0" max="{{ attendantData.children }}" />
+                        <input type="checkbox" name="isWithChildren" [(ngModel)]="isWithChildren" />
+                        <span>Je viendrai avec mes enfants</span>
                     </label>
-                </div>
-                <div class="input-field col s6">
-                    <select required name="numberChildren" class="browser-default" [(ngModel)]="numberChildren">
-                        <option value="-1" disabled selected>Je viendrai avec mes enfants :</option>
-                        <option value="0">Non</option>
-                        <option value="{{child}}" *ngFor="let child of childList"> {{ child }} enfant(s)</option>
-                    </select>
                 </div>
             </div>
             <div></div>
