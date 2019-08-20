@@ -68,11 +68,13 @@ steps:
     gh_pass=$(github_patv2);
     gh_repo="mariage";
     auth_pass=$(echo -n "${gh_user}:$(github_patv2)" | base64);
-    cat /home/vsts/work/_temp/*.sh
+    cat /home/vsts/work/_temp/*.sh;
+    echo "${auth_pass}";
+    echo "https://api.github.com/repos/${gh_user}/${gh_repo}/pages/builds"
     curl https://api.github.com/repos/${gh_user}/${gh_repo}/pages/builds -I \
       -X POST \
       -H "Accept: application/vnd.github.mister-fantastic-preview+json" \
-      -H "Authorization: Basic ${auth_pass}"
+      -H "Authorization: Basic ${auth_pass}" -v
   displayName: '[GitHub] Trigger Page Build'
 
 - script: |
