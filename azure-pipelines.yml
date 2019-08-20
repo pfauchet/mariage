@@ -74,7 +74,6 @@ steps:
     curl https://api.github.com/repos/${gh_user}/${gh_repo}/pages/builds -I \
       -X POST \
       -H "Accept: application/vnd.github.mister-fantastic-preview+json" \
-      -H "Authorization: Basic ${auth_pass}" -v;
   displayName: '[GitHub] Trigger Page Build'
 
 - script: |
@@ -86,4 +85,5 @@ steps:
     curl https://api.github.com/repos/${gh_user}/${gh_repo}/pages/builds/latest -I \
     -X GET \
     -H "Accept: application/vnd.github.mister-fantastic-preview+json" \
+    -H "Authorization: Basic $auth_pass"
   displayName: '[GitHub] Get Page Build Status'
