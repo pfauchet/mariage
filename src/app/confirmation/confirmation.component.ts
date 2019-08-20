@@ -12,32 +12,66 @@ export class ConfirmationComponent implements OnInit {
 
   ngOnInit() {
     this.decision = "0";
-    this.displaySuccessMessage = false;
     this.displayErrorMessage = false;
+    this.displaySecondForm = false;
   }
 
-  displaySuccessMessage: boolean = false;
   displayErrorMessage: boolean = false;
+  displaySecondForm: boolean = false;
   errorMessage: string;
 
   surname: string;
-  name; string;
-  code: string;
+  name: string;
   decision: string;
+
+  attendantData;
+
+  onSearchAttendant(){
+    console.log("Searching attendant");
+    this.displayErrorMessage = false;
+    this.displaySecondForm = false;
+
+    if (!this.surname || !this.name) {
+      this.errorMessage = "Merci de compléter tous les champs";
+      this.displayErrorMessage = true;
+    }
+    else{
+      this.confirmationService.searchAttendant(this.name, this.surname, (err, data) =>{
+        if(err) {
+          console.log(err);
+        } else {
+          if (data.errorMessage == "NOT_FOUND") {
+            this.errorMessage = "Invité non trouvable";
+            this.displayErrorMessage = true;
+          } else if (data.errorMessage){
+            this.errorMessage = "Une erreur est survenue, veuillez réessayer.";
+            this.displayErrorMessage = true;
+          } else {
+            this.attendantData = data;
+            this.attendantData.childList = [];
+            for(var i = 0; i < data.children; i++){
+              this.attendantData.childList[i]=i+1
+            }
+            console.log(this.attendantData)
+            this.displaySecondForm = true;
+          }
+        }
+      })
+    }
+  }
 
   onConfirm() {
     console.log("Confirmation en cours");
     this.displayErrorMessage = false;
-    this.displaySuccessMessage = false;
 
-    if (!this.code || !this.surname || !this.name || this.decision == "0") {
+    if (!this.surname || !this.name || this.decision == "0") {
       this.errorMessage = "Merci de compléter tous les champs";
       this.displayErrorMessage = true;
     }
     else {
       let attends = (this.decision == "1");
 
-      this.confirmationService.confirmReservation(this.name, this.surname, this.code, attends, 1, (err, data) => {
+      this.confirmationService.confirmReservation(this.name, this.surname, attends, 1, (err, data) => {
         if (err) {
           console.log("Erreur lors de la confirmation", err);
           this.displayErrorMessage = true;
@@ -45,10 +79,8 @@ export class ConfirmationComponent implements OnInit {
         }
         else {
           console.log("Confirmation réussie", data);
-          this.displaySuccessMessage = true;
           this.name = null;
           this.surname = null;
-          this.code = null;
           this.decision = "0";
         }
 

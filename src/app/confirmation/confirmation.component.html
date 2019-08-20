@@ -6,15 +6,13 @@
                     <h2 class="center brown-text text-lighten-2"><i class="material-icons">event_note</i></h2>
                 </div>
                 <h5 class="center">Confirmez votre venue</h5>
-                <p class="center light">Complétez le forumlaire ci-dessous en utilisant le code inscrit sur votre carton
-                    d'invitation.</p>
-                <p class="center light" *ngIf="displaySuccessMessage">Ta confirmation a bien été prise en compte, merci !</p>
+                <p class="center light">Complétez le forumlaire ci-dessous avant le <span class="teal-text"
+                        style="font-weight: bold">15 février 2020.</span></p>
                 <p class="center light red-text" *ngIf="displayErrorMessage">{{ errorMessage }}</p>
-
             </div>
         </div>
 
-        <form class="col s12">
+        <form class="col s12" *ngIf="!displaySecondForm">
             <div class="row">
                 <div class="input-field col s6">
                     <input required id="prenom" name="prenom" type="text" class="validate" [(ngModel)]="surname">
@@ -24,19 +22,48 @@
                     <input required id="nom" name="nom" type="text" class="validate" [(ngModel)]="name">
                     <label for="nom">Nom de famille</label>
                 </div>
+            </div>
+            <div class="row center">
+                <button class="btn-large waves-effect waves-light teal lighten-1" (click)="onSearchAttendant()">
+                    Valider
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+
+        <form class="col s12" *ngIf="displaySecondForm">
+            <p class="center light">
+                <b>Bonjour {{ attendantData.surname}} {{ attendantData.name }}</b>
+            </p>
+            <div class="row">
                 <div class="input-field col s6">
-                    <input required id="code" name="code" type="text" class="validate" [(ngModel)]="code">
-                    <label for="code">Code d'invitation</label>
+                    <label>
+                        <input type="checkbox" checked="checked" />
+                        <span>Je serai présent(e)</span>
+                    </label>
+                </div>
+                <div class="input-field col s6" *ngIf="attendantData.plusOne">
+                    <label>
+                        <input type="checkbox" />
+                        <span>Je viendrai accompagné(e) de {{ attendantData.plusOne }}</span>
+                    </label>
+                </div>
+                <div class="input-field col s6" *ngIf="attendantData.children != 0">
+                    <label>
+                        <span>Je viendrai avec des enfants : </span>
+                        <input type="range" min="0" max="{{ attendantData.children }}" />
+                    </label>
                 </div>
                 <div class="input-field col s6">
-                    <select required name="decision" class="browser-default" [(ngModel)]="decision">
-                        <option value="0" disabled selected>Votre choix</option>
-                        <option value="1">Je participe</option>
-                        <option value="2">Je ne participe pas</option>
+                    <select required name="numberChildren" class="browser-default" [(ngModel)]="numberChildren">
+                        <option value="-1" disabled selected>Je viendrai avec mes enfants :</option>
+                        <option value="0">Non</option>
+                        <option value="{{child}}" *ngFor="let child of childList"> {{ child }} enfant(s)</option>
                     </select>
                 </div>
             </div>
-            <div class="row center">
+            <div></div>
+            <div class="row center" style="padding-top: 20px">
                 <button class="btn-large waves-effect waves-light teal lighten-1" (click)="onConfirm()">
                     Valider
                     <i class="material-icons right">send</i>

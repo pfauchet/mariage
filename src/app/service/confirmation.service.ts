@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +9,22 @@ export class ConfirmationService {
 
   constructor(private http: HttpClient) { }
 
-  confirmReservation(name: string, surname: string, code: string, attends: boolean, attendants: number, apiCallback) {
+
+  searchAttendant(name: string, surname: string, apiCallback) {
+    this.http.get(this.apiEndpoint + "/confirmation?surname=" + surname + "&name=" + name).subscribe(
+      data => {
+        apiCallback(null, data);
+      },
+      error => {
+        apiCallback(error, null);
+      });
+  }
+
+  confirmReservation(name: string, surname: string, attends: boolean, attendants: number, apiCallback) {
 
     const body = {
       name: name,
       surname: surname,
-      code: code,
       attends: attends,
       attendants: attendants
     }
