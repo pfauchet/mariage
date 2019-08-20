@@ -46,7 +46,7 @@ export class ConfirmationComponent implements OnInit {
             this.errorMessage = "Invité non trouvable";
             this.displayErrorMessage = true;
           } else if (data.errorMessage) {
-            this.errorMessage = "Une erreur est survenue, veuillez réessayer.";
+            this.errorMessage = "Une erreur est survenue, veuillez réessayer plus tard.";
             this.displayErrorMessage = true;
           } else {
             this.attendantData = data;
@@ -68,10 +68,14 @@ export class ConfirmationComponent implements OnInit {
         this.errorMessage = "Oops, une erreur est survenue lors de la confirmation de ta venue ...";
       }
       else {
-        console.log("Confirmation réussie", data);
-        this.name = null;
-        this.surname = null;
-        this.successMessage = "Confirmation réussie, merci pour votre réponse."
+        if (data.errorMessage) {
+          this.errorMessage = "Une erreur est survenue, veuillez réessayer plus tard.";
+          this.displayErrorMessage = true;
+        }
+        else {
+          console.log("Confirmation réussie", data);
+          this.successMessage = "Confirmation réussie, merci pour votre réponse."
+        }     
       }
     })
 
