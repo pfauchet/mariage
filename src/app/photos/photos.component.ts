@@ -22,7 +22,7 @@ export class PhotosComponent implements OnInit {
 
     M.Tabs.init(elem, options);
     this.loadTrendingPosts();
-    this.loadRecentPosts();
+    //this.loadRecentPosts();
     this.loadMyPosts();
   }
 
