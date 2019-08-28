@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <form class="col s12" *ngIf="!displaySecondForm">
+        <form class="col s12" *ngIf="!displaySecondForm && displayForms">
             <div class="row">
                 <div class="input-field col m6 s12">
                     <input required id="prenom" name="prenom" type="text" class="validate" [(ngModel)]="surname">
@@ -32,7 +32,7 @@
             </div>
         </form>
 
-        <form class="col s12" *ngIf="displaySecondForm">
+        <form class="col s12" *ngIf="displaySecondForm && displayForms">
             <p class="center light">
                 <b>Bonjour {{ attendantData.surname}} {{ attendantData.name }}</b>
             </p>

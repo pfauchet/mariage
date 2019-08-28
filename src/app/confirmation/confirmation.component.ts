@@ -17,6 +17,7 @@ export class ConfirmationComponent implements OnInit {
 
   displaySecondForm: boolean = false;
   displayErrorMessage: boolean = false;
+  displayForms: boolean = true;
   errorMessage: string;
   successMessage: string = null;
 
@@ -76,6 +77,7 @@ export class ConfirmationComponent implements OnInit {
         else {
           console.log("Confirmation réussie", data);
           this.successMessage = "Confirmation réussie, merci pour votre réponse."
+          this.displayForms = false;
         }     
       }
     })
