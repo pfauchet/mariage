@@ -71,14 +71,20 @@ export class ConfirmationComponent implements OnInit {
       }
       else {
         if (data.errorMessage) {
-          this.errorMessage = "Une erreur est survenue, veuillez réessayer plus tard.";
-          this.displayErrorMessage = true;
+          if (data.errorMessage == "INVALID_EMAIL") {
+            this.errorMessage = "Format de l'email invalide.";
+            this.displayErrorMessage = true;
+          }
+          else {
+            this.errorMessage = "Une erreur est survenue, veuillez réessayer plus tard.";
+            this.displayErrorMessage = true;
+          }
         }
         else {
           console.log("Confirmation réussie", data);
           this.successMessage = "Confirmation réussie, merci pour votre réponse."
           this.displayForms = false;
-        }     
+        }
       }
     })
 
