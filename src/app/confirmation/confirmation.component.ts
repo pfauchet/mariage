@@ -27,6 +27,7 @@ export class ConfirmationComponent implements OnInit {
   isAttending: boolean = true;
   isWithPlusOne: boolean = false;
   isWithChildren: boolean = false;
+  email: string = "";
 
   onSearchAttendant() {
     console.log("Searching attendant");
@@ -61,7 +62,7 @@ export class ConfirmationComponent implements OnInit {
     console.log("Confirmation en cours");
     this.displayErrorMessage = false;
 
-    this.confirmationService.confirmReservation(this.attendantData.code, this.attendantData.token, this.isAttending, this.isWithPlusOne, this.isWithChildren, (err, data) => {
+    this.confirmationService.confirmReservation(this.attendantData.code, this.attendantData.token, this.isAttending, this.isWithPlusOne, this.isWithChildren, this.email, (err, data) => {
       if (err) {
         console.log("Erreur lors de la confirmation", err);
         this.displayErrorMessage = true;

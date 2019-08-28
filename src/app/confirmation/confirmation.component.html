@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <label>
-                        <input type="checkbox" name="isAttending" checked="checked" [(ngModel)]="isAttending"/>
+                        <input type="checkbox" name="isAttending" checked="checked" [(ngModel)]="isAttending" />
                         <span>Je serai présent(e)</span>
                     </label>
                 </div>
@@ -56,7 +56,10 @@
                     </label>
                 </div>
             </div>
-            <div></div>
+            <div class="input-field row s6" style="margin-top:50px">
+                <input id="email" name="email" type="text" [(ngModel)]="email">
+                <label for="email">Email (optionnel)</label>
+            </div>
             <div class="row center" style="padding-top: 20px">
                 <button class="btn-large waves-effect waves-light teal lighten-1" (click)="onConfirm()">
                     Valider
