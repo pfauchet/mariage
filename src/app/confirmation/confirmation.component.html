@@ -24,11 +24,26 @@
                     <label for="nom">Nom de famille</label>
                 </div>
             </div>
-            <div class="row center">
+            <div class="row center" *ngIf="!displayLoader">
                 <button class="btn-large waves-effect waves-light teal lighten-1" (click)="onSearchAttendant()">
                     Valider
                     <i class="material-icons right">send</i>
                 </button>
+            </div>
+            <div class="row center" *ngIf="displayLoader">
+                <div class="preloader-wrapper small active">
+                    <div class="spinner-layer spinner-teal-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
 
@@ -60,15 +75,30 @@
                 <input id="email" name="email" type="text" [(ngModel)]="email">
                 <label for="email">Email (optionnel)</label>
             </div>
-            <div class="row center" style="padding-top: 20px">
+            <div class="row center" style="padding-top: 20px" *ngIf="!displayLoader">
                 <button class="btn-large waves-effect waves-light teal lighten-1" (click)="onConfirm()">
                     Valider
                     <i class="material-icons right">send</i>
                 </button>
             </div>
+            <div class="row center" *ngIf="displayLoader">
+                <div class="preloader-wrapper small active">
+                    <div class="spinner-layer spinner-teal-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
     <div class="row center" *ngIf="!displayForms">
         <a routerLink="/" class="btn-large waves-effect waves-light teal lighten-2">Retour à l'accueil</a>
-      </div>
+    </div>
 </div>
