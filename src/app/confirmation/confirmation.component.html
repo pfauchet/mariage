@@ -58,22 +58,39 @@
                         <span>Je serai présent(e)</span>
                     </label>
                 </div>
+            </div>
+            <div class="row">
+                <div class="input-field col m6 s12" style="margin-top: 25px">
+                    <input required id="email" name="email" type="email" class="validate" [(ngModel)]="email">
+                    <label for="email">Email</label>
+                </div>
                 <div class="input-field col s12" *ngIf="attendantData.plusOne">
                     <label>
                         <input type="checkbox" name="isWithPlusOne" [(ngModel)]="isWithPlusOne" />
                         <span>Je viendrai accompagné(e) de {{ attendantData.plusOne }}</span>
                     </label>
                 </div>
-                <div class="input-field col s12" *ngIf="attendantData.children != 0">
+            </div>
+
+            <div class="row" *ngIf="attendantData.children != 0">
+                <div class="input-field col s12">
                     <label>
                         <input type="checkbox" name="isWithChildren" [(ngModel)]="isWithChildren" />
                         <span>Je viendrai avec mes enfants</span>
                     </label>
                 </div>
             </div>
-            <div class="input-field row s6" style="margin-top:50px">
-                <input id="email" name="email" type="text" [(ngModel)]="email">
-                <label for="email">Email (optionnel)</label>
+            <div class="row" *ngIf="attendantData.children != 0">
+                <div class="input-field col m6 s12" *ngIf="isWithChildren" style="margin-top: 25px">
+                    <input required id="nbChildren" name="nbChildren" type="number" class="validate" [(ngModel)]="nbChildren">
+                    <label for="nbChildren">Nombre d'enfants</label>
+                </div>
+                <div class="input-field col s12" *ngIf="isWithChildren">
+                    <label>
+                        <input type="checkbox" name="needsBabySitter" [(ngModel)]="needsBabySitter" />
+                        <span>J'aurai besoin des services de la baby-sitter</span>
+                    </label>
+                </div>
             </div>
             <div class="row center" style="padding-top: 20px" *ngIf="!displayLoader">
                 <button class="btn-large waves-effect waves-light teal lighten-1" (click)="onConfirm()">

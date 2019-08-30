@@ -20,14 +20,16 @@ export class ConfirmationService {
       });
   }
 
-  confirmReservation(code: string, token: string, isAttending: boolean, isWithPlusOne: boolean, isWithChildren: boolean, email: string, apiCallback) {
+  confirmReservation(code: string, token: string, isAttending: boolean, isWithPlusOne: boolean, isWithChildren: boolean, email: string, nbChildren: number, needsBabySitter: boolean, apiCallback) {
     const body = {
       code: code,
       token: token,
       isAttending: isAttending,
       isWithChildren: isWithChildren,
       isWithPlusOne: isWithPlusOne,
-      email: email
+      email: email,
+      nbChildren: nbChildren, 
+      needsBabySitter: needsBabySitter
     }
 
     this.http.post(this.apiEndpoint + "/confirmation", body).subscribe(

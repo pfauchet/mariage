@@ -29,6 +29,8 @@ export class ConfirmationComponent implements OnInit {
   isAttending: boolean = true;
   isWithPlusOne: boolean = false;
   isWithChildren: boolean = false;
+  nbChildren: number;
+  needsBabySitter: boolean = false;
   email: string = "";
 
   onSearchAttendant() {
@@ -73,33 +75,41 @@ export class ConfirmationComponent implements OnInit {
     this.displayErrorMessage = false;
     this.displayLoader = true;
 
-    this.confirmationService.confirmReservation(this.attendantData.code, this.attendantData.token, this.isAttending, this.isWithPlusOne, this.isWithChildren, this.email, (err, data) => {
-      if (err) {
-        console.log("Erreur lors de la confirmation", err);
-        this.displayErrorMessage = true;
-        this.errorMessage = "Oops, une erreur est survenue lors de la confirmation de ta venue ...";
-        this.displayLoader = false;
-      }
-      else {
-        if (data.errorMessage) {
-          if (data.errorMessage == "INVALID_EMAIL") {
-            this.errorMessage = "Format de l'email invalide.";
-            this.displayErrorMessage = true;
-            this.displayLoader = false;
-          }
-          else {
-            this.errorMessage = "Une erreur est survenue, veuillez réessayer plus tard.";
-            this.displayErrorMessage = true;
-            this.displayLoader = false;
-          }
-        }
-        else {
-          console.log("Confirmation réussie", data);
-          this.successMessage = "Confirmation réussie, merci pour votre réponse."
-          this.displayForms = false;
+    if (!this.email || (this.isWithChildren && !this.nbChildren)) {
+      this.errorMessage = "Merci de compléter tous les champs";
+      this.displayErrorMessage = true;
+      this.displayLoader = false;
+    }
+    else {
+      this.confirmationService.confirmReservation(this.attendantData.code, this.attendantData.token, this.isAttending, this.isWithPlusOne, this.isWithChildren, this.email, this.nbChildren, this.needsBabySitter, (err, data) => {
+        if (err) {
+          console.log("Erreur lors de la confirmation", err);
+          this.displayErrorMessage = true;
+          this.errorMessage = "Oops, une erreur est survenue lors de la confirmation de ta venue ...";
           this.displayLoader = false;
         }
-      }
-    })
+        else {
+          if (data.errorMessage) {
+            if (data.errorMessage == "INVALID_EMAIL") {
+              this.errorMessage = "Format de l'email invalide.";
+              this.displayErrorMessage = true;
+              this.displayLoader = false;
+            }
+            else {
+              this.errorMessage = "Une erreur est survenue, veuillez réessayer plus tard.";
+              this.displayErrorMessage = true;
+              this.displayLoader = false;
+            }
+          }
+          else {
+            console.log("Confirmation réussie", data);
+            this.successMessage = "Confirmation réussie, merci pour votre réponse."
+            this.displayForms = false;
+            this.displayLoader = false;
+          }
+        }
+      })
+    }
+
   }
 }
