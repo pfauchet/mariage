@@ -60,9 +60,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col m6 s12" style="margin-top: 25px">
+                <div class="input-field col m6 s12" style="margin-top: 25px; margin-bottom: -20px">
                     <input required id="email" name="email" type="email" class="validate" [(ngModel)]="email">
                     <label for="email">Email</label>
+                    <span class="helper-text">Nous utiliserons votre email pour vous contacter en cas de besoin.</span>
                 </div>
                 <div class="input-field col s12" *ngIf="attendantData.plusOne">
                     <label>
@@ -71,28 +72,39 @@
                     </label>
                 </div>
             </div>
-
-            <div class="row" *ngIf="attendantData.children != 0">
+            <div class="row">
                 <div class="input-field col s12">
+                    <label>
+                        <input type="checkbox" name="needsDriver" [(ngModel)]="needsDriver" />
+                        <span>Je souhaite bénéficier des chauffeurs remplaçants</span>
+                        <span class="helper-text">Un service de chauffeurs sera mis en place pour vous ramener en sécurité avec votre voiture (dans un rayon de 6km ).</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+            </div>
+            <div class="row" *ngIf="attendantData.children != 0">
+                <div class="input-field col s12" >
                     <label>
                         <input type="checkbox" name="isWithChildren" [(ngModel)]="isWithChildren" />
                         <span>Je viendrai avec mes enfants</span>
                     </label>
                 </div>
             </div>
-            <div class="row" *ngIf="attendantData.children != 0">
+            <div class="row" *ngIf="attendantData.children != 0" >
                 <div class="input-field col m6 s12" *ngIf="isWithChildren" style="margin-top: 25px">
-                    <input required id="nbChildren" name="nbChildren" type="number" class="validate" [(ngModel)]="nbChildren">
+                    <input required id="nbChildren" name="nbChildren" type="number" class="validate"
+                        [(ngModel)]="nbChildren">
                     <label for="nbChildren">Nombre d'enfants</label>
                 </div>
-                <div class="input-field col s12" *ngIf="isWithChildren">
+                <div class="input-field col s12" *ngIf="isWithChildren" style="margin-top: -20px">
                     <label>
                         <input type="checkbox" name="needsBabySitter" [(ngModel)]="needsBabySitter" />
                         <span>J'aurai besoin des services de la baby-sitter</span>
                     </label>
                 </div>
             </div>
-            <div class="row center" style="padding-top: 20px" *ngIf="!displayLoader">
+            <div class="row center" style="padding-top: 30px" *ngIf="!displayLoader">
                 <button class="btn-large waves-effect waves-light teal lighten-1" (click)="onConfirm()">
                     Valider
                     <i class="material-icons right">send</i>

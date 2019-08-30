@@ -31,6 +31,7 @@ export class ConfirmationComponent implements OnInit {
   isWithChildren: boolean = false;
   nbChildren: number;
   needsBabySitter: boolean = false;
+  needsDriver: boolean = false;
   email: string = "";
 
   onSearchAttendant() {
@@ -81,7 +82,7 @@ export class ConfirmationComponent implements OnInit {
       this.displayLoader = false;
     }
     else {
-      this.confirmationService.confirmReservation(this.attendantData.code, this.attendantData.token, this.isAttending, this.isWithPlusOne, this.isWithChildren, this.email, this.nbChildren, this.needsBabySitter, (err, data) => {
+      this.confirmationService.confirmReservation(this.attendantData.code, this.attendantData.token, this.isAttending, this.isWithPlusOne, this.isWithChildren, this.email, this.nbChildren, this.needsBabySitter, this.needsDriver, (err, data) => {
         if (err) {
           console.log("Erreur lors de la confirmation", err);
           this.displayErrorMessage = true;
