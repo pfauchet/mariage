@@ -15,7 +15,7 @@ import { PhotosComponent } from './photos/photos.component';
 import { ConfirmationService } from './service/confirmation.service';
 import { CommentaireService } from './service/commentaire.service';
 import { InstagramService } from './service/instagram.service';
-import { ServicesComponent } from './services/services.component'
+import { FaqComponent } from './faq/faq.component'
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { ServicesComponent } from './services/services.component'
     ConfirmationComponent,
     LivreDorComponent,
     PhotosComponent,
-    ServicesComponent
+    FaqComponent
   ],
   imports: [
     BrowserModule,
