@@ -41,6 +41,7 @@ export class PhotosComponent implements OnInit {
           }
         });
       }
+      this.updateHtml();
     })
   }
 
@@ -59,6 +60,7 @@ export class PhotosComponent implements OnInit {
           }
         });
       }
+      this.updateHtml();
     })
   }
 
@@ -77,11 +79,12 @@ export class PhotosComponent implements OnInit {
           }
         });
       }
+      this.updateHtml();
     })
   }
 
-  ngAfterViewChecked() {
-    console.log("Executing ngAfterViewChecked()");
+  updateHtml() {
+    console.log("Executing updateHtml()");
     
     var elements = document.getElementsByClassName("instagram-caption");
     for (var i = 0; i < elements.length; i++) {
