@@ -81,6 +81,8 @@ export class PhotosComponent implements OnInit {
   }
 
   ngAfterViewChecked() {
+    console.log("Executing ngAfterViewChecked()");
+    
     var elements = document.getElementsByClassName("instagram-caption");
     for (var i = 0; i < elements.length; i++) {
       var text = elements[i].innerHTML
