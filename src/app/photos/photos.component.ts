@@ -86,7 +86,7 @@ export class PhotosComponent implements OnInit {
     var elements = document.getElementsByClassName("instagram-caption");
     for (var i = 0; i < elements.length; i++) {
       var text = elements[i].innerHTML
-      elements[i].innerHTML = text.replace(/#([A-Za-zÀ-ÖØ-öø-ÿ0-9]+)/g, '<a href="https://www.instagram.com/explore/tags/$1" target="_blank" rel="noopener noreferrer">#$1</a>');
+      elements[i].innerHTML = text.replace(/[^>]#([A-Za-zÀ-ÖØ-öø-ÿ0-9]+)/g, '<a href="https://www.instagram.com/explore/tags/$1" target="_blank" rel="noopener noreferrer">#$1</a>');
     }
 
     let elem : Element = document.querySelector('li.indicator');
