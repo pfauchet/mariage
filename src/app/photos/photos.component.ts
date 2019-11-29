@@ -19,10 +19,10 @@ export class PhotosComponent implements OnInit {
     let options = {
       duration: 0
     }
-
     M.Tabs.init(elem, options);
+    this.updateHtml();
+
     this.loadTrendingPosts();
-    //this.loadRecentPosts();
     this.loadMyPosts();
   }
 
@@ -32,6 +32,8 @@ export class PhotosComponent implements OnInit {
         console.log("Could not get Instagram Posts : ", err, data)
       }
       else {
+        console.log("Load recent posts complete");
+
         this.recentInstagramPosts = data.data;
         this.recentInstagramPosts.forEach(element => {
           if (element.media_type != "IMAGE") {
@@ -40,8 +42,12 @@ export class PhotosComponent implements OnInit {
             element.media_url = "https://instagram.com/p/" + shortCode + "/media/?size=l";
           }
         });
+        let myThis = this;
+        setTimeout(function () {
+          console.log("ok")
+          myThis.updateHtml();
+        }, 100);
       }
-      this.updateHtml();
     })
   }
 
@@ -51,6 +57,8 @@ export class PhotosComponent implements OnInit {
         console.log("Could not get Instagram Posts : ", err, data)
       }
       else {
+        console.log("Load trending posts complete");
+
         this.trendingInstagramPosts = data.data;
         this.trendingInstagramPosts.forEach(element => {
           if (element.media_type != "IMAGE") {
@@ -59,8 +67,11 @@ export class PhotosComponent implements OnInit {
             element.media_url = "https://instagram.com/p/" + shortCode + "/media/?size=l";
           }
         });
+        let myThis = this;
+        setTimeout(function () {
+          myThis.updateHtml();
+        }, 100);
       }
-      this.updateHtml();
     })
   }
 
@@ -70,6 +81,8 @@ export class PhotosComponent implements OnInit {
         console.log("Could not get Instagram Posts : ", err, data)
       }
       else {
+        console.log("Load my posts complete");
+
         this.myInstagramPosts = data.data;
         this.myInstagramPosts.forEach(element => {
           if (element.media_type != "IMAGE") {
@@ -78,26 +91,29 @@ export class PhotosComponent implements OnInit {
             element.media_url = "https://instagram.com/p/" + shortCode + "/media/?size=l";
           }
         });
+        let myThis = this;
+        setTimeout(function () {
+          myThis.updateHtml();
+        }, 100);
       }
-      this.updateHtml();
     })
   }
 
   updateHtml() {
     console.log("Executing updateHtml()");
-    
+
     var elements = document.getElementsByClassName("instagram-caption");
     for (var i = 0; i < elements.length; i++) {
       var text = elements[i].innerHTML
-      elements[i].innerHTML = text.replace(/[^>]#([A-Za-zÀ-ÖØ-öø-ÿ0-9]+)/g, '<a href="https://www.instagram.com/explore/tags/$1" target="_blank" rel="noopener noreferrer">#$1</a>');
+      elements[i].innerHTML = text.replace(/#([A-Za-zÀ-ÖØ-öø-ÿ0-9]+)/g, '<a href="https://www.instagram.com/explore/tags/$1" target="_blank" rel="noopener noreferrer">#$1</a>');
     }
 
-    let elem : Element = document.querySelector('li.indicator');
+    let elem: Element = document.querySelector('li.indicator');
     let style = elem.getAttribute("style")
-    if(!style){
+    if (!style) {
       console.log("No style attribute", elem);
     }
-    else if(!style.includes("background-color: teal;"))
+    else if (!style.includes("background-color: teal;"))
       elem.setAttribute("style", style + " background-color: teal;")
   }
 }
