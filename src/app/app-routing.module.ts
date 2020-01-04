@@ -6,6 +6,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { LivreDorComponent } from './livre-dor/livre-dor.component'
 import { PhotosComponent } from './photos/photos.component'
 import { FaqComponent } from './faq/faq.component'
+import { ListeMariageComponent } from './liste-mariage/liste-mariage.component'
 
 const routes: Routes = [
   { path: '', component: AccueilComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'livre', component: LivreDorComponent },
   { path: 'photos', component: PhotosComponent },
   { path: 'faq', component: FaqComponent },
+  { path: 'liste', component: ListeMariageComponent },
   { path: '**', redirectTo: '' }
 ];
 
