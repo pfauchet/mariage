@@ -40,4 +40,20 @@ export class InstagramService {
       });
   }
 
+  updateCredentials(redirect_uri, authorization_code, apiCallback) {
+
+    const body = {
+      "redirect_uri":redirect_uri,
+      "authorization_code":authorization_code
+    }
+
+    this.http.patch(this.apiEndpoint + "/instagram/credentials", body).subscribe(
+      data => {
+        apiCallback(null, data);
+      },
+      error => {
+        apiCallback(error, null);
+      });
+  }
+
 }

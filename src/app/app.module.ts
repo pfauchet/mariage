@@ -16,7 +16,9 @@ import { ConfirmationService } from './service/confirmation.service';
 import { CommentaireService } from './service/commentaire.service';
 import { InstagramService } from './service/instagram.service';
 import { FaqComponent } from './faq/faq.component';
-import { ListeMariageComponent } from './liste-mariage/liste-mariage.component'
+import { ListeMariageComponent } from './liste-mariage/liste-mariage.component';
+import { OauthRedirectComponent } from './oauth-redirect/oauth-redirect.component';
+import { OauthLoginComponent } from './oauth-login/oauth-login.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { ListeMariageComponent } from './liste-mariage/liste-mariage.component'
     LivreDorComponent,
     PhotosComponent,
     FaqComponent,
-    ListeMariageComponent
+    ListeMariageComponent,
+    OauthRedirectComponent,
+    OauthLoginComponent
   ],
   imports: [
     BrowserModule,
