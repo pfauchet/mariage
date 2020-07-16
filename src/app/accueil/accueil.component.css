@@ -1,5 +1,6 @@
 .save-the-date {
-    max-width: 530px; 
+    width: 530px; 
+    max-width: 100%;
     margin-bottom: 20px;
 }
 
