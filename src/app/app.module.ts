@@ -18,7 +18,8 @@ import { InstagramService } from './service/instagram.service';
 import { FaqComponent } from './faq/faq.component';
 import { ListeMariageComponent } from './liste-mariage/liste-mariage.component';
 import { OauthRedirectComponent } from './oauth-redirect/oauth-redirect.component';
-import { OauthLoginComponent } from './oauth-login/oauth-login.component'
+import { OauthLoginComponent } from './oauth-login/oauth-login.component';
+import { QrCodeComponent } from './qr-code/qr-code.component'
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { OauthLoginComponent } from './oauth-login/oauth-login.component'
     FaqComponent,
     ListeMariageComponent,
     OauthRedirectComponent,
-    OauthLoginComponent
+    OauthLoginComponent,
+    QrCodeComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { FaqComponent } from './faq/faq.component'
 import { ListeMariageComponent } from './liste-mariage/liste-mariage.component'
 import { OauthRedirectComponent } from './oauth-redirect/oauth-redirect.component';
 import { OauthLoginComponent } from './oauth-login/oauth-login.component'
+import { QrCodeComponent } from './qr-code/qr-code.component'
 
 const routes: Routes = [
   { path: '', component: AccueilComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'liste', component: ListeMariageComponent },
   { path: 'oauth-redirect', component: OauthRedirectComponent },
   { path: 'oauth-login', component: OauthLoginComponent },
+  { path: 'qr-code', component: QrCodeComponent },
   { path: '**', redirectTo: '' }
 ];
 
